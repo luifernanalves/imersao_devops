@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  api:
+    # Constrói a imagem a partir do Dockerfile no diretório atual (.)
+    build: .
+    # Define um nome fixo para o contêiner para fácil referência
+    container_name: gestao-escolar-api
+    # Mapeia a porta 8000 do seu computador (host) para a porta 8000 do contêiner
+    ports:
+      - "8000:8000"
+    # Monta o diretório atual no host para o diretório /app no contêiner
+    # Isso permite o hot-reload e persiste o banco de dados SQLite (escola.db) no seu computador.
+    volumes:
+      - .:/app
+    # Sobrescreve o comando padrão para garantir que o reload funcione com o volume
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
