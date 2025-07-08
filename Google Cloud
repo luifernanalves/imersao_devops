@@ -1,0 +1,4 @@
+Autenticando no Google Cloud
+gcloud auth login
+gcloud config set project PROJECT_ID
+gcloud run deploy --port=8000
